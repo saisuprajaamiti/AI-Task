@@ -1,0 +1,38 @@
+UCI Adult Census Income — Evaluation Results
+
+Dataset: UCI Machine Learning Repository, Adult
+https://archive.ics.uci.edu/dataset/2/adult
+Split: Official UCI train/test split (32,561 training rows; 16,281 test rows)
+Model: Logistic regression with median/mode imputation, one-hot encoding, and
+standard scaling of numeric features.
+Missing feature values imputed: 6,465 across train and test.
+
+Test-set metrics
+----------------
+Accuracy:          0.8507
+Precision (>50K):  0.7282
+Recall (>50K):     0.5871
+F1-score (>50K):   0.6501
+ROC-AUC:           0.9038
+
+Confusion matrix (rows = true class; columns = predicted class):
+Labels: <=50K, >50K
+[[11592, 843],
+ [ 1588, 2258]]
+
+Metric meanings
+---------------
+Accuracy is the fraction of all test predictions that are correct.
+Precision is the fraction of predicted >50K cases that truly exceed $50K.
+Recall is the fraction of actual >50K cases correctly identified.
+F1-score is the harmonic mean of positive-class precision and recall.
+ROC-AUC measures how well the model ranks >50K cases above <=50K cases across
+classification thresholds.
+
+Conclusion
+----------
+The logistic-regression pipeline provides an interpretable baseline, with
+85.07% test accuracy and 0.9038 ROC-AUC. Positive-class recall (58.71%) is
+lower than precision (72.82%), so the model misses a notable portion of
+>50K cases. Because the classes are imbalanced, precision, recall, and the
+confusion matrix should be considered alongside accuracy.
